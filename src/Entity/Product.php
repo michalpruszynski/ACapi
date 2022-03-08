@@ -6,7 +6,7 @@ use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product
+class Product implements \JsonSerializable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -46,5 +46,12 @@ class Product
         $this->amount = $amount;
 
         return $this;
+    }
+    public function jsonSerialize():array {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'amount' => $this->amount
+        ];
     }
 }

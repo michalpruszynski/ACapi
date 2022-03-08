@@ -69,6 +69,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-symfony}
     volumes:
       - db-data:/var/lib/postgresql/data:rw
+      - ./docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - "5432:5432"
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
@@ -86,5 +87,5 @@ volumes:
   db-data:
 ###< doctrine/doctrine-bundle ###
 networks:
-      default:
-        name: ntwrkApiClient
+  default:
+    name: ntwrkApiClient

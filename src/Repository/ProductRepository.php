@@ -22,19 +22,52 @@ class ProductRepository extends ServiceEntityRepository
     // /**
     //  * @return Product[] Returns an array of Product objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findAllGreaterThanAmount(int $amount): array
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            WHERE p.amount > :amount
+            ORDER BY p.amount ASC'
+        )->setParameter('amount', $amount);
+
+        // returns an array of Product objects
+        return $query->getResult();
     }
-    */
+
+    public function findonStock(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            WHERE p.amount > 0
+            ORDER BY p.amount ASC'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
+    public function findOutOfStock(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Product p
+            WHERE p.amount = 0
+            ORDER BY p.amount ASC'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+    
 
     /*
     public function findOneBySomeField($value): ?Product
