@@ -2,11 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
-class Product implements \JsonSerializable
+#[ApiResource]
+#[ApiFilter(RangeFilter::class, properties: ['amount'])]
+class Product 
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,6 +22,7 @@ class Product implements \JsonSerializable
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    
     #[ORM\Column(type: 'integer')]
     private $amount;
 
@@ -47,11 +54,11 @@ class Product implements \JsonSerializable
 
         return $this;
     }
-    public function jsonSerialize():array {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'amount' => $this->amount
-        ];
-    }
+    // public function jsonSerialize():array {
+    //     return [
+    //         'id' => $this->id,
+    //         'name' => $this->name,
+    //         'amount' => $this->amount
+    //     ];
+    // }
 }
