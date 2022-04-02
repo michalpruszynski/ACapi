@@ -7,5 +7,8 @@ up:
 build:
 	docker-compose build --pull --no-cache
 
-importdb:
+doctrinemigrate:
 	bin/console doctrine:migrations:migrate
+
+storedata:
+	symfony run psql < dump.sql
