@@ -1,19 +1,30 @@
-
-This is an API for Client version app. 
-
 ## Getting Started
 
-Using makefile:
-1. make build
-2. make up
-3. make importdb
+0. git clone https://github.com/michalpruszynski/ACapi
 
-Without makefile:
 1. docker-compose build --pull --no-cache
+
 2. docker-compose up -d
+
 3. bin/console doctrine:migrations:migrate
 
+4. php bin/console doctrine:fixtures:load
+  
 
-## Credits
+## Client version
 
-Docker integration created by [Kévin Dunglas](https://dunglas.fr), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop) // edited for own needs by Michał Pruszyński
+0. git clone https://github.com/michalpruszynski/ACclient
+
+1. docker-compose build --pull --no-cache
+
+2. docker-compose up -d
+  
+
+## Usage
+Check api at - https://api.localhost/api
+
+Use client version app at - https://localhost:444/
+
+## Todo
+ - [ ] write tests
+ - [ ] refactor
