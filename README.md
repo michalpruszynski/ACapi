@@ -25,6 +25,16 @@ Check api at - https://api.localhost/api
 
 Use client version app at - https://localhost:444/
 
+## Troubleshooting
+If doctrine can't create try to comment (file: docker-compose.yml):
+
+on line 72:
+
+\- ./docker/db/data:/var/lib/postgresql/data:rw
+
 ## Todo
  - [ ] write tests
  - [ ] refactor
+
+***
+Tested on Manjaro Linux, macOS Monterey, Windows 10 with WSL
